@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.UnaryOperator;
 
+//Рисовалка с определением чисел
 public class FormDigits extends JFrame implements Runnable, MouseListener, MouseMotionListener, KeyListener {
 
     private final int w = 28;
@@ -39,7 +40,6 @@ public class FormDigits extends JFrame implements Runnable, MouseListener, Mouse
     public void run() {
         while (true) {
             this.repaint();
-//            try { Thread.sleep(17); } catch (InterruptedException e) {}
         }
     }
 
@@ -74,8 +74,8 @@ public class FormDigits extends JFrame implements Runnable, MouseListener, Mouse
         }
         Graphics2D ig = (Graphics2D) img.getGraphics();
         ig.drawImage(pimg, 0, 0, w * scale, h * scale, this);
-        ig.setColor(Color.lightGray);
-        ig.fillRect(w * scale + 1, 0, 200, h * scale);
+        ig.setColor(Color.lightGray); //Задаем цвет шкалы вероятностм
+        ig.fillRect(w * scale + 1, 0, 200, h * scale);  //Задаем размер шкалы вероятностм
         ig.setFont(new Font("TimesRoman", Font.BOLD, 48));
         for (int i = 0; i < 10; i++) {
             if(maxDigit == i) ig.setColor(Color.RED);

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.function.UnaryOperator;
 
+//Функция форма с точками
 public class FormDots extends JFrame implements Runnable, MouseListener {
 
     private final int w = 1280;
@@ -34,6 +35,7 @@ public class FormDots extends JFrame implements Runnable, MouseListener {
     }
 
     @Override
+
     public void run() {
         while (true) {
             this.repaint();
@@ -49,7 +51,7 @@ public class FormDots extends JFrame implements Runnable, MouseListener {
                 double nx = (double) p.x / w - 0.5;
                 double ny = (double) p.y / h - 0.5;
                 nn.feedForward(new double[]{nx, ny});
-                double[] targets = new double[2];
+                int[] targets = new int[2];
                 if (p.type == 0) targets[0] = 1;
                 else targets[1] = 1;
                 nn.backpropagation(targets);

@@ -2,8 +2,8 @@ public class Layer {
 
     public int size;
     public double[] neurons;
-    public double[] biases;
-    public double[][] weights;
+    public double[] biases; //нейрона смещения
+    public double[][] weights;  //веса
 
     public Layer(int size, int nextSize) {
         this.size = size;
