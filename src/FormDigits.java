@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.UnaryOperator;
 
-//Рисовалка с определением чисел
 public class FormDigits extends JFrame implements Runnable, MouseListener, MouseMotionListener, KeyListener {
 
     private final int w = 28;

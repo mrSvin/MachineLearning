@@ -8,15 +8,10 @@ import java.util.function.UnaryOperator;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        //dots();
         digits();
     }
 
-    //Форма с точками
-    private static void dots() {
-        FormDots f = new FormDots();
-        new Thread(f).start();
-    }
+
 
     //Распознавание чисел
     private static void digits() throws IOException {
@@ -43,10 +38,7 @@ public class Main {
             }
         }
 
-        int epochs = 300; //задаем проходы, чем выще, тем точнее
-
-        PrintWriter out = new PrintWriter("output.txt");
-        PrintWriter out_neurons = new PrintWriter("layers_weights.txt");
+        int epochs = 400; //задаем проходы, чем выше, тем точнее
 
         for (int i = 1; i < epochs; i++) {
             int right = 0;
@@ -58,8 +50,8 @@ public class Main {
                 int digit = digits[imgIndex];
                 targets[digit] = 1;
 
-                if (errorSum<9 & right>95) {
-                    epochs=50;
+                if (errorSum<5 & right>95) {
+                    epochs=0;
                     System.out.println("Обучение завершиось по условию!"); //Выводим номер опроса
                 }
 
@@ -70,7 +62,7 @@ public class Main {
                     if(outputs[k] > maxDigitWeight) {
                         maxDigitWeight = outputs[k];
                         maxDigit = k;
-                        out_neurons.println("вероятность " + k + ":" + outputs[k] + " цель: " + targets[k] + " число в изображении: " +digit);
+//                        System.out.println("вероятность " + k + ":" + outputs[k] + " цель: " + targets[k] + " число в изображении: " +digit);
                     }
                 }
                 if(digit == maxDigit) right++;
@@ -81,11 +73,9 @@ public class Main {
             }
             System.out.println("номер прохода: " + i + ". определил: " + right + ". ошибся: " + errorSum); //Выводим номер опроса
 
-            out.println("номер прохода: " + i + ". определил: " + right + ". ошибся: " + errorSum );
+
 
         }
-        out.close();
-        out_neurons.close();
 
         FormDigits f = new FormDigits(nn);
         new Thread(f).start();
